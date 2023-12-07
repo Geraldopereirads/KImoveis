@@ -12,7 +12,7 @@ class Address {
   @Column({ length: 8 })
   zipCode: string;
 
-  @Column()
+  @Column({ type: "integer" })
   number: number;
 
   @Column({ length: 20 })
