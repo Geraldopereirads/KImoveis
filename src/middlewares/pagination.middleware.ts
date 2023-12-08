@@ -12,6 +12,27 @@ export const pagination = (
   const perPage: number =
     queryPerPage <= 5 && queryPerPage > 0 ? queryPerPage : 5;
 
+  const querySort: any = req.query.sortOptions;
+  const queryOrder: any = req.query.order;
+
+  const orderOptions: Array<string> = ["asc", "desc"];
+  const sortOptions: Array<string> = ["price"];
+
+  let sort: string;
+  let order: string;
+
+  if (!querySort && sortOptions.includes(querySort)) {
+    sort = "id";
+  } else {
+    sort = querySort;
+  }
+
+  if (!querySort || !(queryOrder && orderOptions.includes(queryOrder))) {
+    order = "asc";
+  } else {
+    order = queryOrder;
+  }
+
   const baseUrl: string = "http://localhost:3000/";
   const prevPage: string = `${baseUrl}?page=${page - 1}&perPage=${perPage}`;
   const nextPage: string = `${baseUrl}?page=${page + 1}&perPage=${perPage}`;
@@ -19,8 +40,10 @@ export const pagination = (
   res.locals = {
     ...res.locals,
     pagination: {
-      page,
+      page: perPage * (page - 1),
       perPage,
+      order,
+      sort,
       prevPage,
       nextPage,
     },
