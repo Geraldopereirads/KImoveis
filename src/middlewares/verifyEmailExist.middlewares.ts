@@ -9,9 +9,10 @@ export const verifyEmailExist = async (
   next: NextFunction
 ): Promise<void> => {
   const email: string = req.body.email;
-  const user: User | null = await usersRepo.findOneBy({ email });
 
-  if (user) throw new AppError("Email already exists", 409);
+  if (!email) return next();
 
-  return next();
+  const userEmail: boolean = await usersRepo.exist({ where: { email } });
+
+  if (userEmail) throw new AppError("Email already exists", 409);
 };
