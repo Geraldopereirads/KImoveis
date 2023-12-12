@@ -27,7 +27,7 @@ export class RealEstate {
     scale: 2,
     default: 0,
   })
-  value: number;
+  value: number | string;
 
   @Column()
   size: number;
@@ -42,9 +42,6 @@ export class RealEstate {
   @JoinColumn()
   address: Address;
 
-  @ManyToOne(() => Category, (c) => c.realStates)
+  @ManyToOne(() => Category)
   category: Category;
-
-  @OneToMany(() => Schedule, (r) => r.realEstate)
-  schedules: Array<Schedule>;
 }

@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { User } from "../entities";
 import { AppError } from "../errors/App.error";
 import { usersRepo } from "../repositories/user.repository";
 

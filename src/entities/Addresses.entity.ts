@@ -20,9 +20,6 @@ class Address {
 
   @Column({ length: 2 })
   state: string;
-
-  @OneToOne(() => RealEstate)
-  realState: RealEstate;
 }
 
 export { Address };
