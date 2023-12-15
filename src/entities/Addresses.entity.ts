@@ -20,6 +20,11 @@ class Address {
 
   @Column({ length: 2 })
   state: string;
+
+  @OneToOne(() => RealEstate, (r) => r.address, {
+    onDelete: "CASCADE",
+  })
+  realEstate: RealEstate;
 }
 
 export { Address };

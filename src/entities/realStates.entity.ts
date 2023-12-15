@@ -2,14 +2,12 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
   OneToOne,
   ManyToOne,
   JoinColumn,
 } from "typeorm";
-import { Schedule } from "./Schedules.entity";
 import { Address } from "./Addresses.entity";
 import { Category } from "./categories.entity";
 
@@ -33,12 +31,12 @@ export class RealEstate {
   size: number;
 
   @CreateDateColumn()
-  createdAt?: string | Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updatedAt?: string | Date;
+  updatedAt: Date;
 
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, (a) => a.realEstate)
   @JoinColumn()
   address: Address;
 
