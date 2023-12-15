@@ -3,12 +3,12 @@ import { z } from "zod";
 export const userSchema = z.object({
   id: z.number().positive(),
   name: z.string().max(45),
-  email: z.string().max(45),
+  email: z.string().max(45).email(),
   admin: z.boolean().default(false),
   password: z.string().max(120),
   createdAt: z.date().or(z.string()),
   updatedAt: z.date().or(z.string()),
-  deletedAt: z.date().nullish(),
+  deletedAt: z.date().nullable(),
 });
 
 export const userSchemaRequest = userSchema.omit({
@@ -18,10 +18,9 @@ export const userSchemaRequest = userSchema.omit({
   deletedAt: true,
 });
 
+export const userSchemaResponse = userSchema.omit({ password: true });
+
 export const userSchemaUpdate = userSchemaRequest
   .partial()
   .omit({ admin: true });
-
-export const userSchemaResponse = userSchema.omit({ password: true });
-
-export const getUsersSchemaResponse = z.array(userSchemaResponse);
+export const getUsersSchemaResponse = userSchemaResponse.array();

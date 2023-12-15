@@ -7,9 +7,11 @@ import {
   OneToOne,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
 import { Address } from "./Addresses.entity";
 import { Category } from "./categories.entity";
+import { Schedule } from "./Schedules.entity";
 
 @Entity("realEstates")
 export class RealEstate {
@@ -30,16 +32,21 @@ export class RealEstate {
   @Column()
   size: number;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  @CreateDateColumn({ type: "date" })
+  createdAt: string;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+  @UpdateDateColumn({ type: "date" })
+  updatedAt: string;
 
-  @OneToOne(() => Address, (a) => a.realEstate)
+  @OneToOne(() => Address, (a) => a.realEstate, {
+    eager: true,
+  })
   @JoinColumn()
   address: Address;
 
   @ManyToOne(() => Category)
   category: Category;
+
+  @OneToMany(() => Schedule, (s) => s.realEstate)
+  schedules: Array<Schedule>;
 }

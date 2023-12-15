@@ -1,4 +1,4 @@
-import { RealEstate, Address, Category } from "../entities";
+import { Address, Category, RealEstate } from "../entities";
 import { AppError } from "../errors/App.error";
 import {
   TRealStateCreate,

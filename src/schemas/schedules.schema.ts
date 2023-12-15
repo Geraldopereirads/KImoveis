@@ -6,6 +6,7 @@ export const scheduleSchema = z.object({
   hour: z.string(),
 });
 
-export const scheduleRequestSchema = scheduleSchema
-  .omit({ id: true })
-  .extend({ realEstateId: z.number() });
+export const scheduleRequestSchema = scheduleSchema.omit({ id: true }).extend({
+  realEstateId: z.number().positive(),
+  userId: z.number().positive(),
+});

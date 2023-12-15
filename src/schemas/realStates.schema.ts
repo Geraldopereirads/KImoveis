@@ -24,4 +24,16 @@ export const realEstatesCreateSchema = realEstatesSchema
     categoryId: z.number().positive(),
   });
 
-export const realEstateReturnSchema = realEstatesSchema.array();
+export const realEstateReturnSchema = realEstatesSchema
+  .omit({
+    id: true,
+    sold: true,
+    createdAt: true,
+    updatedAt: true,
+    address: true,
+  })
+  .extend({
+    address: addressesCreateSchema,
+    categoryId: z.number().positive(),
+  })
+  .array();
