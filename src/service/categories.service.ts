@@ -4,7 +4,6 @@ import {
   TCategoryRequest,
 } from "../interfaces/categories.interface";
 import { categoryRepo } from "../repositories/categories.repository";
-import { categoriesSchema } from "../schemas/categories.schema";
 
 export const createCategoryService = async (
   payload: TCategoryRequest
@@ -18,4 +17,16 @@ export const createCategoryService = async (
 
 export const readCategoryService = async (): Promise<TCategories> => {
   return await categoryRepo.find();
+};
+
+export const readRealEstatesByCategoryIdService = async (
+  categoryId: number
+): Promise<Category | null> => {
+  const category: Category | null = await categoryRepo.findOne({
+    where: {
+      id: categoryId,
+    },
+    relations: ["realEstates"],
+  });
+  return category;
 };
