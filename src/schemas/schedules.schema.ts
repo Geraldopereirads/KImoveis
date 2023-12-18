@@ -8,5 +8,4 @@ export const scheduleSchema = z.object({
 
 export const scheduleRequestSchema = scheduleSchema.omit({ id: true }).extend({
   realEstateId: z.number().positive(),
-  userId: z.number().positive(),
 });

@@ -14,4 +14,6 @@ export const verifyNameExist = async (
   const categories: boolean = await categoryRepo.exist({ where: { name } });
 
   if (categories) throw new AppError("Category already exists", 409);
+
+  return next();
 };
