@@ -13,14 +13,14 @@ export const loginService = async (loginData: TLogin): Promise<string> => {
     },
   });
 
-  if (!user) throw new AppError("Wrong email/password", 401);
+  if (!user) throw new AppError("Invalid credentials", 401);
 
   const passwordMatch = await compare(loginData.password, user.password);
 
-  if (!passwordMatch) throw new AppError("Wrong email/password", 401);
+  if (!passwordMatch) throw new AppError("Invalid credentials", 401);
 
   const token = jwt.sign({}, String(process.env.SECRET_KEY), {
-    expiresIn: "24h",
+    expiresIn: process.env.EXPIRES_IN,
     subject: String(user.id),
   });
 

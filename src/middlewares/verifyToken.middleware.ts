@@ -15,7 +15,17 @@ export const verifyToken = (
 
   res.locals = {
     ...res.locals,
-    decoded: verify(token, process.env.SECRET_KEY!),
+    decoded: verify(
+      token,
+      process.env.SECRET_KEY!,
+      (error: any, decoded: any) => {
+        if (error) throw new AppError(error.message, 401);
+
+        res.locals.userId = decoded.sub;
+
+        return next();
+      }
+    ),
   };
 
   return next();
