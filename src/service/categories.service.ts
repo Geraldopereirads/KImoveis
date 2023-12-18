@@ -4,11 +4,11 @@ import { categoryRepo } from "../repositories/categories.repository";
 import { categoriesSchema } from "../schemas/categories.schema";
 
 export const createCategoryService = async ({ name }: TCategoryReturn) => {
-  const newCategory: Category = categoryRepo.create({
+  const category: Category = categoryRepo.create({
     name: name,
   });
 
-  const category: Category = await categoryRepo.save(newCategory);
+  await categoryRepo.save(category);
 
   return category;
 };
