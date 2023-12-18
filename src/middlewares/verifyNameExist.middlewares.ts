@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors/App.error";
 import { categoryRepo } from "../repositories/categories.repository";
+import { Category } from "../entities";
 
 export const verifyNameExist = async (
   req: Request,
@@ -11,7 +12,7 @@ export const verifyNameExist = async (
 
   if (!name) return next();
 
-  const categories: boolean = await categoryRepo.exist({ where: { name } });
+  const categories: Category | null = await categoryRepo.findOneBy({ name });
 
   if (categories) throw new AppError("Category already exists", 409);
 

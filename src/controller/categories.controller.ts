@@ -1,16 +1,24 @@
 import "express-async-errors";
 import { Request, Response } from "express";
-import { createCategoryService } from "../service/categories.service";
+import {
+  createCategoryService,
+  readCategoryService,
+} from "../service/categories.service";
 import { Category } from "../entities";
-import { TCategoryReturn } from "../interfaces/categories.interface";
 
 export const createCategoryController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { name } = req.body;
-
-  const category: TCategoryReturn = await createCategoryService(name);
+  const category: Category = await createCategoryService(req.body);
 
   return res.status(201).json(category);
+};
+
+export const readCategoriesController = async (
+  request: Request,
+  response: Response
+): Promise<Response> => {
+  const listCategories = await readCategoryService();
+  return response.status(200).json(listCategories);
 };

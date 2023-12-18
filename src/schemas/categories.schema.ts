@@ -6,4 +6,3 @@ export const categoriesSchema = z.object({
 });
 
 export const categoriesSchemaRequest = categoriesSchema.omit({ id: true });
-export const categoriesResult = categoriesSchema;

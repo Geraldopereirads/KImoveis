@@ -3,7 +3,10 @@ import { validateBody } from "../middlewares/validateBody.middlewares";
 import { categoriesSchemaRequest } from "../schemas/categories.schema";
 import { verifyNameExist } from "../middlewares/verifyNameExist.middlewares";
 import { isAdmin } from "../middlewares/isAdmin.middleware";
-import { createCategoryController } from "../controller/categories.controller";
+import {
+  createCategoryController,
+  readCategoriesController,
+} from "../controller/categories.controller";
 import { verifyToken } from "../middlewares/verifyToken.middleware";
 
 export const categoriesRouter: Router = Router();
@@ -16,5 +19,5 @@ categoriesRouter.post(
   verifyNameExist,
   createCategoryController
 );
-categoriesRouter.get("");
+categoriesRouter.get("", readCategoriesController);
 categoriesRouter.get("/:id/realEstate");

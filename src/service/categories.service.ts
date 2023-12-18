@@ -1,20 +1,21 @@
 import { Category } from "../entities";
-import { TCategoryReturn } from "../interfaces/categories.interface";
+import {
+  TCategories,
+  TCategoryRequest,
+} from "../interfaces/categories.interface";
 import { categoryRepo } from "../repositories/categories.repository";
 import { categoriesSchema } from "../schemas/categories.schema";
 
-export const createCategoryService = async ({ name }: TCategoryReturn) => {
-  const category: Category = categoryRepo.create({
-    name: name,
-  });
+export const createCategoryService = async (
+  payload: TCategoryRequest
+): Promise<Category> => {
+  const category: Category = categoryRepo.create(payload);
 
   await categoryRepo.save(category);
 
   return category;
 };
 
-export const readCategoryService = async () => {
-  const Categories = categoryRepo.find();
-
-  return categoriesSchema.parse(Categories);
+export const readCategoryService = async (): Promise<TCategories> => {
+  return await categoryRepo.find();
 };

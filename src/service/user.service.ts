@@ -2,6 +2,7 @@ import { User } from "../entities";
 import {
   TUserRequest,
   TUserResponse,
+  TUserUpdate,
   TgetUserResponse,
 } from "../interfaces/users.interfaces";
 import { usersRepo } from "../repositories/user.repository";
@@ -22,7 +23,11 @@ export const userReadService = async (): Promise<TgetUserResponse> => {
   return getUsersSchemaResponse.parse(await usersRepo.find());
 };
 
-// export const userUpdateService = async (): Promise<User> => {
+// export const userUpdateService = async (
+//   user: User,
+//   userBody: TUserUpdate
+// ): Promise<TUserResponse> => {
+//   const { admin, }
 //   return;
 // };
 
