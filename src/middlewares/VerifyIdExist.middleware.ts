@@ -13,7 +13,7 @@ export const userVerifyIdExists = async (
 
   if (!user) throw new AppError("User not found", 404);
 
-  res.locals = { ...res.locals, user };
+  res.locals = { ...res.locals, user, id };
 
   return next();
 };
