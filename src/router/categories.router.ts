@@ -9,7 +9,6 @@ import {
   searchCategoryByIdController,
 } from "../controller/categories.controller";
 import { verifyToken } from "../middlewares/verifyToken.middleware";
-import { verifyCategoryExistMiddleware } from "../middlewares/verifyCategoryExist.middleware";
 import { checkExistingId } from "../middlewares/verifyIdCategoryExist.middleware";
 
 export const categoriesRouter: Router = Router();

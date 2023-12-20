@@ -1,4 +1,5 @@
 import { Category } from "../entities";
+import { AppError } from "../errors/App.error";
 import {
   TCategories,
   TCategoryRequest,
@@ -26,7 +27,8 @@ export const readRealEstatesByCategoryIdService = async (
     where: {
       id: categoryId,
     },
-    relations: ["realEstates"],
+    relations: ["realEstate"],
   });
+
   return category;
 };
