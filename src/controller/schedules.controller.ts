@@ -5,8 +5,8 @@ export const createScheduleController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const userId = res.locals.id;
-  await createScheduleService(userId, req.body);
+  const userId: number = Number(res.locals.user.id);
+  const scheduleRequest = await createScheduleService(req.body, userId);
 
-  return res.status(201).json({ message: "Schedule created" });
+  return res.status(201).json(scheduleRequest);
 };

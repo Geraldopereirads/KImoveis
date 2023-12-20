@@ -5,6 +5,7 @@ import { validateBody } from "../middlewares/validateBody.middlewares";
 import { scheduleRequestSchema } from "../schemas/schedules.schema";
 import { checkRealEstateScheduleAlreadyExists } from "../middlewares/checkRealEstateScheduleReadyExist.middleware";
 import { isAdmin } from "../middlewares/isAdmin.middleware";
+import { validScheduleMiddlewares } from "../middlewares/validSchedule.middleware";
 
 export const schedulesRouter: Router = Router();
 
@@ -13,6 +14,7 @@ schedulesRouter.post(
   verifyToken,
   isAdmin,
   validateBody(scheduleRequestSchema),
+  validScheduleMiddlewares,
   checkRealEstateScheduleAlreadyExists,
   createScheduleController
 );

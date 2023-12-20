@@ -8,6 +8,8 @@ import {
   userDeleteController,
 } from "../controller/user.controller";
 import { verifyEmailExist } from "../middlewares/verifyEmailExist.middlewares";
+import { verifyToken } from "../middlewares/verifyToken.middleware";
+import { isAdmin } from "../middlewares/isAdmin.middleware";
 
 export const usersRouter: Router = Router();
 
@@ -22,4 +24,4 @@ usersRouter.get("", userReadController);
 usersRouter.use("/:id", userVerifyIdExists);
 
 usersRouter.patch("/:id", validateBody(userSchemaUpdate));
-usersRouter.delete("/:id", userDeleteController);
+usersRouter.delete("/:id", verifyToken, isAdmin, userDeleteController);

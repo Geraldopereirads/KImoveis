@@ -4,11 +4,11 @@ import { Category } from "../entities";
 import { AppError } from "../errors/App.error";
 
 export const verifyCategoryExistMiddleware = async (
-  request: Request,
-  response: Response,
+  req: Request,
+  res: Response,
   next: NextFunction
 ): Promise<void> => {
-  const { id } = request.body;
+  const { id } = req.body;
 
   const categoryId: Category | null = await categoryRepo.findOneBy({
     id: id,
@@ -20,7 +20,7 @@ export const verifyCategoryExistMiddleware = async (
     throw new AppError("Category already exists", 409);
   }
 
-  response.locals = { ...response.locals, categoryId, id };
+  res.locals = { ...res.locals, categoryId };
 
   return next();
 };

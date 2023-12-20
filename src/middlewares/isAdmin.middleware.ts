@@ -6,8 +6,10 @@ export const isAdmin = (
   res: Response,
   next: NextFunction
 ): void => {
-  const { id } = req.params;
-  const { sub, admin } = res.locals.decoded;
+  const user = res.locals.user.admin;
 
+  if (user["true"] === false) {
+    throw new AppError("Insufficient permission", 403);
+  }
   return next();
 };

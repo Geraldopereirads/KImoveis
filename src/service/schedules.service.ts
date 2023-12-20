@@ -10,39 +10,34 @@ import { usersRepo } from "../repositories/user.repository";
 import { scheduleSchema } from "../schemas/schedules.schema";
 
 export const createScheduleService = async (
-  { realEstateId, ...payload }: TScheduleRequest,
+  scheduleData: TScheduleRequest,
   userId: number
-): Promise<TScheduleReturn> => {
-  const realEstate: RealEstate = (await realEstateRepo.findOneBy({
-    id: realEstateId,
-  }))!;
+): Promise<object> => {
+  const user: User | null = await usersRepo.findOneBy({ id: Number(userId) });
 
-  if (!realEstate) {
-    throw new AppError("RealEstate not found", 404);
+  if (!user) {
+    throw new AppError("User not found", 404);
   }
 
-  const dateTime = new Date(payload.date + " " + payload.hour);
+  let realEstateResult: RealEstate | null;
 
-  const dayOfTheWeek = dateTime.getDay();
-  const businessHours = dateTime.getHours();
+  if (scheduleData.realEstateId) {
+    realEstateResult = await realEstateRepo.findOneBy({
+      id: Number(scheduleData.realEstateId),
+    });
 
-  if (dayOfTheWeek < 1 || dayOfTheWeek > 5) {
-    throw new AppError("Invalid date, work days are monday to friday");
+    if (!realEstateResult) {
+      throw new AppError("RealEstate not found", 404);
+    }
   }
 
-  if (businessHours < 8 || businessHours > 18) {
-    throw new AppError("Invalid hour, available times are 8AM to 18PM");
-  }
-
-  const user: User = (await usersRepo.findOneBy({ id: userId }))!;
-
-  const schedule: Schedule = scheduleRepo.create({
-    ...payload,
-    realEstate: realEstate,
-    user: { id: userId },
+  const schedulesCreate: Schedule = scheduleRepo.create({
+    ...scheduleData,
+    realEstate: realEstateResult!,
+    user: user!,
   });
 
-  await scheduleRepo.save(schedule);
+  await scheduleRepo.save(schedulesCreate);
 
-  return scheduleSchema.parse(schedule);
+  return { message: "Schedule created" };
 };
