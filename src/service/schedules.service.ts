@@ -1,13 +1,9 @@
 import { RealEstate, Schedule, User } from "../entities";
 import { AppError } from "../errors/App.error";
-import {
-  TScheduleRequest,
-  TScheduleReturn,
-} from "../interfaces/schedule.interface";
+import { TScheduleRequest } from "../interfaces/schedule.interface";
 import { realEstateRepo } from "../repositories/realState.repository";
 import { scheduleRepo } from "../repositories/schendule.repository";
 import { usersRepo } from "../repositories/user.repository";
-import { scheduleSchema } from "../schemas/schedules.schema";
 
 export const createScheduleService = async (
   scheduleData: TScheduleRequest,
@@ -40,4 +36,25 @@ export const createScheduleService = async (
   await scheduleRepo.save(schedulesCreate);
 
   return { message: "Schedule created" };
+};
+
+export const readSchedulesService = async (
+  realEstateId: number
+): Promise<RealEstate> => {
+  const realEstateFind: RealEstate | null = await realEstateRepo.findOne({
+    where: {
+      id: realEstateId,
+    },
+    relations: {
+      address: true,
+      category: true,
+      schedules: {
+        user: true,
+      },
+    },
+  });
+
+  if (!realEstateFind) throw new AppError("RealEstate not found", 404);
+
+  return realEstateFind;
 };

@@ -8,7 +8,7 @@ export const isAdmin = (
 ): void => {
   const user = res.locals.user.admin;
 
-  if (user["true"] === false) {
+  if (!user || user["true"] === false) {
     throw new AppError("Insufficient permission", 403);
   }
   return next();

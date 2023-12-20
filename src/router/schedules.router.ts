@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { createScheduleController } from "../controller/schedules.controller";
+import {
+  createScheduleController,
+  readSchedulesController,
+} from "../controller/schedules.controller";
 import { verifyToken } from "../middlewares/verifyToken.middleware";
 import { validateBody } from "../middlewares/validateBody.middlewares";
 import { scheduleRequestSchema } from "../schemas/schedules.schema";
@@ -18,4 +21,9 @@ schedulesRouter.post(
   checkRealEstateScheduleAlreadyExists,
   createScheduleController
 );
-schedulesRouter.get("/realEstate/:id");
+schedulesRouter.get(
+  "/realEstate/:id",
+  verifyToken,
+  isAdmin,
+  readSchedulesController
+);
