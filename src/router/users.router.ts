@@ -19,7 +19,7 @@ usersRouter.post(
   verifyEmailExist,
   userCreateController
 );
-usersRouter.get("", userReadController);
+usersRouter.get("", verifyToken, isAdmin, userReadController);
 
 usersRouter.use("/:id", userVerifyIdExists);
 
