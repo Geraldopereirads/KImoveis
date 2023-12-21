@@ -15,10 +15,9 @@ export const schedulesRouter: Router = Router();
 schedulesRouter.post(
   "",
   verifyToken,
-  isAdmin,
   validateBody(scheduleRequestSchema),
-  validScheduleMiddlewares,
   checkRealEstateScheduleAlreadyExists,
+  validScheduleMiddlewares,
   createScheduleController
 );
 schedulesRouter.get(
