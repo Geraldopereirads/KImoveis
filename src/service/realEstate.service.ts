@@ -13,6 +13,19 @@ export const createRealEstateService = async (
 ): Promise<RealEstate> => {
   const { address, categoryId, ...body } = payload;
 
+  const existingAddress = await addressRepo.findOne({
+    where: {
+      number: address.number,
+      street: address.street,
+      zipCode: address.zipCode,
+      city: address.city,
+      state: address.state,
+    },
+  });
+  if (existingAddress) {
+    throw new AppError("Address already exists", 409);
+  }
+
   const newAddres: Address = addressRepo.create({ ...address });
   await addressRepo.save(newAddres);
 
