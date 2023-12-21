@@ -23,13 +23,26 @@ export const userReadService = async (): Promise<TgetUserResponse> => {
   return getUsersSchemaResponse.parse(await usersRepo.find());
 };
 
-// export const userUpdateService = async (
-//   user: User,
-//   userBody: TUserUpdate
-// ): Promise<TUserResponse> => {
-//   const { admin, }
-//   return;
-// };
+export const userUpdateService = async (
+  userData: TUserUpdate,
+  idParam: number
+): Promise<TUserResponse> => {
+  const oldUser = await usersRepo.findOne({
+    where: {
+      id: idParam,
+    },
+  });
+
+  const user = usersRepo.create({
+    ...oldUser,
+    ...userData,
+  });
+
+  await usersRepo.save(user);
+  const updatedUser = userSchemaResponse.parse(user);
+
+  return updatedUser;
+};
 
 export const userDeleteService = async (user: User): Promise<void> => {
   await usersRepo.softRemove(user);

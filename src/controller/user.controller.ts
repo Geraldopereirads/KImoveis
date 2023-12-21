@@ -3,9 +3,11 @@ import {
   userCreateService,
   userDeleteService,
   userReadService,
+  userUpdateService,
 } from "../service/user.service";
 import {
   TUserResponse,
+  TUserUpdate,
   TgetUserResponse,
 } from "../interfaces/users.interfaces";
 
@@ -23,6 +25,19 @@ export const userReadController = async (
   const users: TgetUserResponse = await userReadService();
   return res.status(200).json(users);
 };
+
+export const userUpdateController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const userData: TUserUpdate = req.body;
+  const idParam = parseInt(req.params.id);
+
+  const updatedUser = await userUpdateService(userData, idParam);
+
+  return res.status(200).json(updatedUser);
+};
+
 export const userDeleteController = async (
   req: Request,
   res: Response
