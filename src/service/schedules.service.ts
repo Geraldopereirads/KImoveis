@@ -25,6 +25,9 @@ export const createScheduleService = async (
     if (!realEstateResult) {
       throw new AppError("RealEstate not found", 404);
     }
+    if (!scheduleData.realEstateId) {
+      throw new AppError("RealEstate not found", 404);
+    }
   }
 
   const schedulesCreate: Schedule = scheduleRepo.create({

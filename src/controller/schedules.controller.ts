@@ -3,7 +3,6 @@ import {
   createScheduleService,
   readSchedulesService,
 } from "../service/schedules.service";
-import { Schedule } from "../entities";
 
 export const createScheduleController = async (
   req: Request,
