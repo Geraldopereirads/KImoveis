@@ -1,0 +1,417 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "KIMoveis API",
+        "description": "Esta API tem como objetivo fornecer um sistema eficiente para o gerenciamento completo de uma imobiliária. Permite o cadastro de imóveis e usuários interessados na aquisição de propriedades, oferecendo funcionalidades abrangentes para o agendamento e consulta de horários de visitas às propriedades disponíveis no banco de dados da imobiliária. Com recursos intuitivos e seguros, a aplicação proporciona uma experiência integrada para facilitar a administração dos serviços oferecidos pela imobiliária Kimóveis, promovendo eficácia e organização na gestão de propriedades e interações com clientes.",
+        "termsOfService": "http://localhost:3000/api-docs",
+        "contact": {
+            "email": "geraldo.pereirads@hotmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "End Point KIMoveis API"
+        }
+    ],
+    "paths": {
+        "/users": {
+            "post": {
+                "summary": "Cadastra um novo usuário no banco de dados.",
+                "description": "Essa rota será responsável por cadastrar um novo usuário",
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Users"
+                            },
+                            "examples": {
+                                "users": {
+                                    "value": {
+                                        "name": "Exemplo 2",
+                                        "email": "exemplo2@example.com",
+                                        "admin": true,
+                                        "password": "senha456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "409": {
+                        "description": "Email already exists."
+                    },
+                    "400": {
+                        "description": "Zod Error"
+                    },
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Busca todos os usuários do banco de dados",
+                "summary": "Busca todos os usuários do banco de dados",
+                "tags": [
+                    "Users"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    }
+                },
+                "components": {
+                    "securitySchemes": {
+                        "bearerAuth": {
+                            "type": "http",
+                            "scheme": "bearer",
+                            "bearerFormat": "JWT"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "patch": {
+                "description": "Alterar um usuários pelo ID",
+                "summary": "Alterar um usuários pelo ID",
+                "tags": [
+                    "Users"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Alterar o usuários pelo ID"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Users"
+                            },
+                            "examples": {
+                                "users": {
+                                    "value": {
+                                        "name": "Exemplo 1",
+                                        "email": "exemplo1@example.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Zod Error"
+                    },
+                    "401": {
+                        "description": "Missing bearer token"
+                    },
+                    "403": {
+                        "description": "Insufficient permission"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    }
+                },
+                "components": {
+                    "schemas": {
+                        "Users": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Deletar um usuários pelo ID",
+                "summary": "Deletar um usuários pelo ID",
+                "tags": [
+                    "Users"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Deletar o usuários pelo ID"
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Missing bearer token"
+                    },
+                    "403": {
+                        "description": "Insufficient permission"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "204": {
+                        "description": "No Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    }
+                },
+                "components": {
+                    "securitySchemes": {
+                        "bearerAuth": {
+                            "type": "http",
+                            "scheme": "bearer",
+                            "bearerFormat": "JWT"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "summary": "Realizar o login de um usuário no sistema",
+                "description": "Essa rota será responsável por fazer o login no banco de dados",
+                "tags": [
+                    "Login"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Login"
+                            },
+                            "examples": {
+                                "login": {
+                                    "value": {
+                                        "email": "exemplo2@example.com",
+                                        "password": "senha456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Login"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "post": {
+                "summary": "Realizar o cadastro de uma categoria",
+                "description": "Essa rota será responsável por realizar o cadastro de uma categoria",
+                "tags": [
+                    "Category"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Category"
+                            },
+                            "examples": {
+                                "categories": {
+                                    "value": {
+                                        "name": "Category 1"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Zod Error"
+                    },
+                    "409": {
+                        "description": "Category already exists"
+                    },
+                    "401": {
+                        "description": "Missing bearer token"
+                    },
+                    "403": {
+                        "description": "Insufficient permission"
+                    },
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Busca todos as categorias do banco de dados",
+                "summary": "Busca todos as categorias do banco de dados",
+                "tags": [
+                    "Category"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/{id}/realEstate": {
+            "get": {
+                "description": "Lista todos os imóveis que pertencem a uma categoria",
+                "summary": "Lista todos os imóveis que pertencem a uma categoria",
+                "tags": [
+                    "Category"
+                ],
+                "parameters": [
+                    {
+                        "id": "id",
+                        "name": "Exemplo 1",
+                        "in": "query",
+                        "description": "Qualquer usuário, não necessita token",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Category not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/realEstate": {
+            "post": {
+                "summary": "Cria um novo real estate",
+                "description": "Cria um novo imovel para venda ou aluguel.",
+                "tags": [
+                    "RealEstate"
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Users": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "admin": {
+                        "type": "boolean"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
