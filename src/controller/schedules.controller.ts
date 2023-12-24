@@ -20,5 +20,5 @@ export const readSchedulesController = async (
 ): Promise<Response> => {
   const estateId: number = parseInt(req.params.id);
   const schedules = await readSchedulesService(estateId);
-  return res.json(schedules);
+  return res.status(200).json(schedules);
 };

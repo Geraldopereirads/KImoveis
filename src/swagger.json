@@ -379,7 +379,160 @@
                 "description": "Cria um novo imovel para venda ou aluguel.",
                 "tags": [
                     "RealEstate"
-                ]
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RealEstate"
+                            },
+                            "examples": {
+                                "realEstates": {
+                                    "value": {
+                                        "value": "12345.67",
+                                        "size": 150,
+                                        "address": {
+                                            "street": "123 Main St",
+                                            "zipCode": "54321",
+                                            "number": 42,
+                                            "city": "Example City",
+                                            "state": "CA"
+                                        },
+                                        "categoryId": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Zod Error"
+                    },
+                    "401": {
+                        "description": "Missing bearer token"
+                    },
+                    "403": {
+                        "description": "Insufficient permission"
+                    },
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RealEstate"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Busca todos as imóveis do banco de dados",
+                "summary": "Busca todos as imóveis do banco de dados",
+                "tags": [
+                    "RealEstate"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RealEstate"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/schedules": {
+            "post": {
+                "summary": "Agenda uma visita a um imóvel",
+                "description": "Agenda uma visita a um imóvel",
+                "tags": [
+                    "Schedule"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Schedule"
+                            },
+                            "examples": {
+                                "schedules": {
+                                    "value": {
+                                        "date": "19/12/2023",
+                                        "hour": "23:51",
+                                        "realEstateId": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid date, work days are monday to friday"
+                    },
+                    "401": {
+                        "description": "Missing bearer token"
+                    },
+                    "409": {
+                        "description": "Schedule to this real estate at this date and time already exists"
+                    },
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Schedule"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/schedules/realEstate/{id}": {
+            "get": {
+                "description": "lista todos os agendamentos de um imóvel",
+                "summary": "lista todos os agendamentos de um imóvel",
+                "tags": [
+                    "Schedule"
+                ],
+                "parameters": [
+                    {
+                        "name": "Exemplo 1",
+                        "id": "id",
+                        "in": "query",
+                        "description": "Apenas Administradores",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Missing bearer token"
+                    },
+                    "403": {
+                        "description": "Insufficient permission"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Schedule"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
