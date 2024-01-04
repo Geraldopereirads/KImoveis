@@ -10,16 +10,21 @@ Para obter acesso à documentação da API, siga as etapas abaixo:
 
    ```bash
    npm install
+   ```
+   
+    ```bash
    npm run dev
+   ```
+   
 
    
-2. **Executar testes automáticos jest:**
+1. **Executar testes automáticos jest:**
    
 
    ```bash
    npm run test
 
-3. **URL da documentação swagger:**
+2. **URL da documentação swagger:**
 
 
    ```bash
