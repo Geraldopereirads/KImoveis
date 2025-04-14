@@ -1,31 +1,60 @@
-# KImóveis - TypeORM com Relacionamentos
+# 🏡 Kimóveis API
+
+Sistema completo de gerenciamento imobiliário desenvolvido para atender às necessidades da imobiliária **Kimóveis**. A aplicação permite o cadastro de imóveis, usuários interessados, categorias, agendamento de visitas e autenticação com base em permissões de acesso.
+
+## 🚀 Tecnologias Utilizadas
+
+- **Node.js**
+- **TypeScript**
+- **Express**
+- **TypeORM**
+- **PostgreSQL**
+- **Zod**
+- **bcryptjs**
+- **jsonwebtoken**
+- **dotenv**
 
 
-## Como Acessar a Documentação da API Localmente
+## 🔐 Autenticação e Autorização
 
-Para obter acesso à documentação da API, siga as etapas abaixo:
+- A autenticação é feita via JWT.
+- Existem dois níveis de acesso: **usuários comuns** e **administradores**.
+- Algumas rotas são exclusivas para administradores.
 
-1. **Executar a API Localmente:**
-   Certifique-se de ter todas as dependências instaladas e execute a API localmente em sua máquina. Use o seguinte comando:
+## 🧠 Regras de Negócio
 
-   ```bash
-   npm install
-   ```
-   
-    ```bash
-   npm run dev
-   ```
-   
-
-   
-1. **Executar testes automáticos jest:**
-   
-
-   ```bash
-   npm run test
-
-2. **URL da documentação swagger:**
+- Não é possível cadastrar dois usuários com o mesmo e-mail.
+- Apenas administradores podem deletar ou atualizar qualquer usuário.
+- Soft delete implementado para usuários.
+- Endereços e categorias são únicos.
+- Um mesmo horário e data não pode ser agendado para diferentes usuários no mesmo imóvel.
+- Horários permitidos para agendamento: segunda a sexta, entre 08:00 e 18:00.
 
 
-   ```bash
-   http://localhost:3000/api-docs
+## 🛠️ Entidades
+
+- **User**
+- **Address**
+- **Category**
+- **RealEstate**
+- **Schedule**
+
+As entidades e seus relacionamentos estão mapeados conforme o diagrama exportados via `src/entities/index.ts`.
+
+## 📦 Instalação
+
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/kimoveis-api.git
+
+# Instale as dependências
+npm install
+
+# Configure o banco de dados no arquivo .env
+DATABASE_URL=postgres://usuario:senha@localhost:5432/kimoveis
+
+# Rode as migrations
+npm run typeorm migration:run
+
+# Inicie a aplicação
+npm run dev
