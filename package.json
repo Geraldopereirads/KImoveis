@@ -9,23 +9,37 @@
     "test": "cross-env NODE_ENV=test SECRET_KEY=secret_key EXPIRES_IN=1h jest --verbose --runInBand"
   },
   "devDependencies": {
-    "@types/express": "^4.17.13",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^4.17.21",
     "@types/jest": "^28.1.4",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^20.10.3",
+    "@types/pg": "^8.10.9",
+    "@types/pg-format": "^1.0.5",
     "@types/supertest": "^2.0.12",
+    "@types/swagger-ui-express": "^4.1.6",
     "cross-env": "^7.0.3",
     "jest": "^28.1.2",
     "sqlite3": "^5.0.8",
     "supertest": "^6.2.4",
     "ts-jest": "^28.0.5",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.9.5"
   },
   "dependencies": {
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
-    "pg": "^8.7.3",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3",
+    "pg-format": "^1.0.4",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.17"
-  }
+    "swagger-ui-express": "^5.0.0",
+    "typeorm": "^0.3.17",
+    "zod": "^3.22.4"
+  },
+  "description": "O dono da imobiliária Kimóveis contratou sua empresa para desenvolver uma aplicação para o gerenciamento de seus serviços.",
+  "keywords": [],
+  "author": ""
 }
