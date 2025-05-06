@@ -55,7 +55,9 @@ npm install
 ```
 
 # Rode as migrations
+```bash
 npm run typeorm migration:run
+```
 
 # Inicie a aplicação
 ```bash
