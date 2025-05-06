@@ -43,18 +43,28 @@ As entidades e seus relacionamentos estão mapeados conforme o diagrama exportad
 
 ## 📦 Instalação
 
-```bash
+
 # Clone o repositório
-git clone https://github.com/seu-usuario/kimoveis-api.git
+```bash
+git clone git@github.com:Geraldopereirads/KImoveis.git
+```
 
 # Instale as dependências
+```bash
 npm install
-
-# Configure o banco de dados no arquivo .env
-DATABASE_URL=postgres://usuario:senha@localhost:5432/kimoveis
+```
 
 # Rode as migrations
+```bash
 npm run typeorm migration:run
+```
 
 # Inicie a aplicação
+```bash
 npm run dev
+```
+
+# URL Swagger
+```bash
+https://kimoveis-mow4.onrender.com/api-docs/
+```
