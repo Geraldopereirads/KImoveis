@@ -9,7 +9,7 @@
     "test": "cross-env NODE_ENV=test SECRET_KEY=secret_key EXPIRES_IN=1h jest --verbose --runInBand",
     "build": "tsc",
     "start": "node dist/server.js",
-    "migrate":"npm run typeorm migration:run -d ./data-source.ts"
+    "migrate": "typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
