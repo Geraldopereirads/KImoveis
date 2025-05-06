@@ -54,9 +54,6 @@ git clone git@github.com:Geraldopereirads/KImoveis.git
 npm install
 ```
 
-# Configure o banco de dados no arquivo .env
-DATABASE_URL=postgres://<username>:<password>@<host>:<port>/<database>
-
 # Rode as migrations
 npm run typeorm migration:run
 
