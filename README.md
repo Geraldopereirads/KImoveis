@@ -64,7 +64,3 @@ npm run typeorm migration:run
 npm run dev
 ```
 
-# URL Swagger
-```bash
-https://kimoveis-mow4.onrender.com/api-docs/
-```
