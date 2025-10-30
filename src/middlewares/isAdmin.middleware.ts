@@ -6,10 +6,11 @@ export const isAdmin = (
   res: Response,
   next: NextFunction
 ): void => {
-  const user = res.locals.user.admin;
+  const user = res.locals.user;
 
-  if (!user) {
+  if (!user?.admin) {
     throw new AppError("Insufficient permission", 403);
   }
-  return next();
+
+  next();
 };

@@ -19,10 +19,11 @@ export const loginService = async (loginData: TLogin): Promise<string> => {
 
   if (!passwordMatch) throw new AppError("Invalid credentials", 401);
 
-  const token = jwt.sign({}, String(process.env.SECRET_KEY), {
-    expiresIn: "24h",
-    subject: String(user.id),
-  });
+  const token = jwt.sign(
+  { email: user.email, admin: user.admin },
+  String(process.env.SECRET_KEY), // <-- aqui
+  { expiresIn: "24h", subject: String(user.id) }
+);
 
   return token;
 };
