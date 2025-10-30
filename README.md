@@ -1,37 +1,53 @@
 # 🏡 Kimóveis API
 
-Sistema completo de gerenciamento imobiliário desenvolvido para atender às necessidades da imobiliária **Kimóveis**. A aplicação permite o cadastro de imóveis, usuários interessados, categorias, agendamento de visitas e autenticação com base em permissões de acesso.
+API RESTful completa para **gestão imobiliária**, desenvolvida com foco em boas práticas de **back-end com TypeScript, Express e TypeORM**.  
+O sistema oferece **cadastro de imóveis, usuários, categorias, agendamentos e autenticação JWT**, com permissões distintas entre **usuários comuns e administradores**.
 
-## 🚀 Tecnologias Utilizadas
+---
+
+## 🚀 Deploy
+
+A API está hospedada e funcional nos seguintes serviços:
+
+- **Render (backend):** [https://kimoveis-pgbl.onrender.com](https://kimoveis-pgbl.onrender.com)
+- **Swagger (documentação completa):** [https://kimoveis-pgbl.onrender.com/api-docs/](https://kimoveis-pgbl.onrender.com/api-docs/)
+
+> A aplicação roda na **porta 3000**.
+
+---
+
+## 🧠 Sobre o Projeto
+
+O **Kimóveis API** foi desenvolvido para atender as principais necessidades de uma imobiliária, oferecendo:
+
+- Cadastro e gerenciamento de **usuários, imóveis, endereços e categorias**.
+- Sistema de **agendamento de visitas** com regras de negócio.
+- **Autenticação JWT** e controle de acesso para administradores.
+- **Soft Delete** e relacionamentos entre entidades.
+- Deploy completo utilizando **Render** (servidor) e **Neon** (banco de dados PostgreSQL).
+
+---
+
+## 🏗️ Tecnologias Utilizadas
 
 - **Node.js**
 - **TypeScript**
 - **Express**
 - **TypeORM**
-- **PostgreSQL**
-- **Zod**
-- **bcryptjs**
-- **jsonwebtoken**
-- **dotenv**
+- **PostgreSQL** (hospedado no [Neon.tech](https://neon.tech))
+- **Zod** – validação de dados
+- **BcryptJS** – criptografia de senhas
+- **jsonwebtoken (JWT)** – autenticação
+- **dotenv** – gerenciamento de variáveis de ambiente
+- **Swagger UI Express** – documentação da API
+- **Express Async Errors** – tratamento global de erros
+- **PG e PG-Format** – integração com banco de dados PostgreSQL
 
+---
 
-## 🔐 Autenticação e Autorização
+## 🧩 Entidades e Relacionamentos
 
-- A autenticação é feita via JWT.
-- Existem dois níveis de acesso: **usuários comuns** e **administradores**.
-- Algumas rotas são exclusivas para administradores.
-
-## 🧠 Regras de Negócio
-
-- Não é possível cadastrar dois usuários com o mesmo e-mail.
-- Apenas administradores podem deletar ou atualizar qualquer usuário.
-- Soft delete implementado para usuários.
-- Endereços e categorias são únicos.
-- Um mesmo horário e data não pode ser agendado para diferentes usuários no mesmo imóvel.
-- Horários permitidos para agendamento: segunda a sexta, entre 08:00 e 18:00.
-
-
-## 🛠️ Entidades
+O sistema é composto pelas seguintes entidades:
 
 - **User**
 - **Address**
@@ -39,28 +55,19 @@ Sistema completo de gerenciamento imobiliário desenvolvido para atender às nec
 - **RealEstate**
 - **Schedule**
 
-As entidades e seus relacionamentos estão mapeados conforme o diagrama exportados via `src/entities/index.ts`.
+📘 Diagrama de Entidades:
 
-## 📦 Instalação
+<img width="828" height="721" alt="DER" src="https://github.com/user-attachments/assets/ef9357ae-cf5c-4b37-8fdb-db8362e619b9" />
 
 
-# Clone o repositório
-```bash
-git clone git@github.com:Geraldopereirads/KImoveis.git
-```
+---
 
-# Instale as dependências
-```bash
-npm install
-```
+## 🔐 Autenticação e Autorização
 
-# Rode as migrations
-```bash
-npm run typeorm migration:run
-```
-
-# Inicie a aplicação
-```bash
-npm run dev
-```
-
+- A autenticação é realizada via **JWT (JSON Web Token)**.
+- Existem **dois níveis de acesso**:
+  - **Administrador:** acesso total às rotas protegidas.
+  - **Usuário comum:** acesso restrito.
+- Algumas rotas exigem o token enviado no header:
+  ```http
+  Authorization: Bearer <token>
