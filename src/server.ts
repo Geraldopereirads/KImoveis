@@ -13,7 +13,7 @@ AppDataSource.initialize()
 
       setInterval(async () => {
         try {
-          const url = "https://kimoveis-mow4.onrender.com/categories";
+          const url = "https://kimoveis-pgbl.onrender.com/heath";
           const res = await axios.get(url);
           console.log(`Auto-ping OK: ${res.status}`);
         } catch (error: any) {
