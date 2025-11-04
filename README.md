@@ -9,7 +9,6 @@ O sistema oferece **cadastro de imóveis, usuários, categorias, agendamentos e 
 
 A API está hospedada e funcional nos seguintes serviços:
 
-- **Render (backend):** [https://kimoveis-pgbl.onrender.com](https://kimoveis-pgbl.onrender.com)
 - **Swagger (documentação completa):** [https://kimoveis-pgbl.onrender.com/api-docs/](https://kimoveis-pgbl.onrender.com/api-docs/)
 
 > A aplicação roda na **porta 3000**.
