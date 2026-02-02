@@ -1,11 +1,11 @@
-# 🏡 Kimóveis API
+#  Kimóveis API
 
 API RESTful completa para **gestão imobiliária**, desenvolvida com foco em boas práticas de **back-end com TypeScript, Express e TypeORM**.  
 O sistema oferece **cadastro de imóveis, usuários, categorias, agendamentos e autenticação JWT**, com permissões distintas entre **usuários comuns e administradores**.
 
 ---
 
-## 🚀 Deploy
+##  Deploy
 
 A API está hospedada e funcional nos seguintes serviços:
 
@@ -15,7 +15,7 @@ A API está hospedada e funcional nos seguintes serviços:
 
 ---
 
-## 🧠 Sobre o Projeto
+##  Sobre o Projeto
 
 O **Kimóveis API** foi desenvolvido para atender as principais necessidades de uma imobiliária, oferecendo:
 
@@ -27,7 +27,7 @@ O **Kimóveis API** foi desenvolvido para atender as principais necessidades de 
 
 ---
 
-## 🏗️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 - **Node.js**
 - **TypeScript**
@@ -44,7 +44,7 @@ O **Kimóveis API** foi desenvolvido para atender as principais necessidades de 
 
 ---
 
-## 🧩 Entidades e Relacionamentos
+##  Entidades e Relacionamentos
 
 O sistema é composto pelas seguintes entidades:
 
@@ -54,14 +54,14 @@ O sistema é composto pelas seguintes entidades:
 - **RealEstate**
 - **Schedule**
 
-📘 Diagrama de Entidades:
+ Diagrama de Entidades:
 
 <img width="828" height="721" alt="DER" src="https://github.com/user-attachments/assets/ef9357ae-cf5c-4b37-8fdb-db8362e619b9" />
 
 
 ---
 
-## 🔐 Autenticação e Autorização
+##  Autenticação e Autorização
 
 - A autenticação é realizada via **JWT (JSON Web Token)**.
 - Existem **dois níveis de acesso**:
