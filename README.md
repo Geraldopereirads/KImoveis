@@ -1,72 +1,57 @@
-#  Kimóveis API
+# KImóveis API
 
-API RESTful completa para **gestão imobiliária**, desenvolvida com foco em boas práticas de **back-end com TypeScript, Express e TypeORM**.  
-O sistema oferece **cadastro de imóveis, usuários, categorias, agendamentos e autenticação JWT**, com permissões distintas entre **usuários comuns e administradores**.
+KImóveis é uma API desenvolvida como projeto acadêmico com o objetivo de simular o funcionamento de uma plataforma imobiliária.
 
----
+Durante o desenvolvimento do projeto trabalhei conceitos importantes de back-end como autenticação com JWT, modelagem de banco de dados relacional, relacionamentos entre entidades, validação de dados, documentação de APIs e testes automatizados.
 
-##  Deploy
+Além de servir como exercício prático, o projeto me ajudou a consolidar conhecimentos em TypeScript, Express, TypeORM e PostgreSQL através de um cenário próximo ao que encontramos em aplicações reais.
 
-A API está hospedada e funcional nos seguintes serviços:
+## Acesso à documentação
 
-- **Swagger (documentação completa):** [https://kimoveis-pgbl.onrender.com/api-docs/](https://kimoveis-pgbl.onrender.com/api-docs/)
+A documentação está disponível através do Swagger:
 
-> A aplicação roda na **porta 3000**.
+## Documentação
 
----
+A API possui documentação gerada com Swagger, permitindo visualizar e testar todos os endpoints disponíveis diretamente pelo navegador.
 
-##  Sobre o Projeto
+Swagger: [https://kimoveis-pgbl.onrender.com/api-docs/](https://kimoveis-pgbl.onrender.com/api-docs/) 
 
-O **Kimóveis API** foi desenvolvido para atender as principais necessidades de uma imobiliária, oferecendo:
+## O que o sistema permite
 
-- Cadastro e gerenciamento de **usuários, imóveis, endereços e categorias**.
-- Sistema de **agendamento de visitas** com regras de negócio.
-- **Autenticação JWT** e controle de acesso para administradores.
-- **Soft Delete** e relacionamentos entre entidades.
-- Deploy completo utilizando **Render** (servidor) e **Neon** (banco de dados PostgreSQL).
+- Cadastro e gerenciamento de usuários.
+- Cadastro e gerenciamento de imóveis.
+- Organização de imóveis por categorias.
+- Agendamento de visitas.
+- Controle de acesso através de autenticação JWT.
+- Permissões diferentes para usuários comuns e administradores.
 
----
+  ## Tecnologias utilizadas
 
-##  Tecnologias Utilizadas
+Principais tecnologias utilizadas durante o desenvolvimento do projeto:
 
-- **Node.js**
-- **TypeScript**
-- **Express**
-- **TypeORM**
-- **PostgreSQL** (hospedado no [Neon.tech](https://neon.tech))
-- **Zod** – validação de dados
-- **BcryptJS** – criptografia de senhas
-- **jsonwebtoken (JWT)** – autenticação
-- **dotenv** – gerenciamento de variáveis de ambiente
-- **Swagger UI Express** – documentação da API
-- **Express Async Errors** – tratamento global de erros
-- **PG e PG-Format** – integração com banco de dados PostgreSQL
+- TypeScript
+- Node.js
+- Express
+- TypeORM
+- PostgreSQL
+- JWT
+- Swagger
+- Jest
 
----
+Além disso, foram utilizadas bibliotecas auxiliares para validação de dados, criptografia de senhas, tratamento de erros e gerenciamento de variáveis de ambiente.
+...
 
-##  Entidades e Relacionamentos
+## Modelagem do banco de dados
 
-O sistema é composto pelas seguintes entidades:
+Durante o desenvolvimento do projeto foi criada uma estrutura relacional composta por usuários, imóveis, categorias, endereços e agendamentos.
 
-- **User**
-- **Address**
-- **Category**
-- **RealEstate**
-- **Schedule**
-
- Diagrama de Entidades:
-
+Diagrama de Entidade Relacionamento (DER):
 <img width="828" height="721" alt="DER" src="https://github.com/user-attachments/assets/ef9357ae-cf5c-4b37-8fdb-db8362e619b9" />
 
+## Documentação da API
 
----
+A documentação da API foi gerada utilizando Swagger, permitindo visualizar todos os recursos disponíveis e testar requisições diretamente pela interface.
 
-##  Autenticação e Autorização
+Exemplo da documentação:
 
-- A autenticação é realizada via **JWT (JSON Web Token)**.
-- Existem **dois níveis de acesso**:
-  - **Administrador:** acesso total às rotas protegidas.
-  - **Usuário comum:** acesso restrito.
-- Algumas rotas exigem o token enviado no header:
-  ```http
-  Authorization: Bearer <token>
+<img width="1272" height="800" alt="image" src="https://github.com/user-attachments/assets/e0eb2efb-1e31-40b4-9fc7-75ccb8958f09" />
