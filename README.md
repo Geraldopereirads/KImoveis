@@ -1,14 +1,10 @@
 # KImóveis API
 
-KImóveis é uma API desenvolvida como projeto acadêmico com o objetivo de simular o funcionamento de uma plataforma imobiliária.
+KImóveis é uma API desenvolvida para o funcionamento de uma plataforma imobiliária.
 
 Durante o desenvolvimento do projeto trabalhei conceitos importantes de back-end como autenticação com JWT, modelagem de banco de dados relacional, relacionamentos entre entidades, validação de dados, documentação de APIs e testes automatizados.
 
-Além de servir como exercício prático, o projeto me ajudou a consolidar conhecimentos em TypeScript, Express, TypeORM e PostgreSQL através de um cenário próximo ao que encontramos em aplicações reais.
-
-## Acesso à documentação
-
-A documentação está disponível através do Swagger:
+Além de servir como exercício prático, o projeto me ajudou a consolidar conhecimentos em TypeScript, Express, TypeORM e PostgreSQL.
 
 ## Documentação
 
